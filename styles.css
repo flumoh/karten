@@ -1,0 +1,90 @@
+#map-frame {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    -ms-overflow-style: none; /* Edge, Internet Explorer */
+    scrollbar-width: none; /* Firefox */
+    overflow: scroll;
+}
+
+.map {
+    position: absolute;
+    min-width: 100%;
+    min-height: 100%;
+    top:0;
+    left: 0;
+    background-position: 0% 0%;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: grab;
+    z-index: -1;
+}
+
+#swordcoastmap {
+    width: 10200px;
+    height: 6600px;
+    background-image: url("images/Swordcoast\ faded.jpg");
+    max-width: 10200px;
+    max-height: 6600px;
+}
+
+.marker {
+    position: absolute;
+    top: 50%;
+    left: 20%;
+}
+
+.fa-map-marker {
+    font-size: 32px;
+}
+
+a.marker {
+    text-align: center;
+    float: inline-end;
+    color: black;
+    text-decoration-line: none;
+}
+
+a.marker:hover {
+    font-size: 36px;
+}
+
+
+header {
+    position: fixed;
+    margin-top: 10px;
+}
+
+header.left {
+    left: 10px;
+    width: 300pt;
+    max-width: 90%;
+}
+
+header.right {
+    right: 10px;
+}
+
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-content: stretch;
+    justify-content: stretch;
+}
+
+body {
+    background-color: black;
+    overflow: hidden;
+}
+
+#map-frame::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Opera */
+}
+
+i.fa { /*Icons Styling*/
+    font-size:36px;
+    color:black;
+}
