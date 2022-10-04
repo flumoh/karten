@@ -1,61 +1,73 @@
-class MapData {
-    constructor(name, width, height) {
-        this.name = name;
-        this.width = width;
-        this.height = height;
+
+
+class TransformMap {
+    constructor(element, originX = 0.0, originY = 0.0, translateX = 0.0, translateY = 0.0, scale = 1.0) {
+        this.element = element, this.originX = originX, this.originY = originY, this.translateX = translateX, this.translateY = translateY, this.scale = scale;
+        this.apply();
     }
-}
 
+    
+    apply(scale = this.scale, translateX = this.translateX, translateY = this.translateY) {
+        this.element.style.transform = `matrix(${scale}, 0, 0, ${scale}, ${translateX}, ${translateY})`;
+    }
 
+    applyOrigin(originX = this.originX, originY = this.originY) {
+        this.element.style.transformOrigin = `${originX}px ${originY}px`;
+    }
 
+    move(movementX, movementY) {
+        this.translateX += movementX, this.translateY += movementY;
+        this.apply();
+    }
+    
+    verschiebung(coord, origin, scale) {
+        return (coord - origin) * (1 - scale) / scale;
+    }
 
-function scrollElement(elmnt, offsetLeft, offsetTop) {
-    elmnt.parentElement.scrollLeft = Math.round(offsetLeft);
-    elmnt.parentElement.scrollTop = Math.round(offsetTop);
+    changeOrigin(clientX, clientY) {
+        this.translateX -= this.verschiebung(clientX - this.translateX, this.originX, this.scale), this.translateY -= this.verschiebung(clientY - this.translateY, this.originY, this.scale);
 
-}
-
-function zoomTo(elmnt, coordX, coordY, zoomFactor, map_dim){
         
-    elmnt.style.width = `${Math.round(zoomFactor * map_dim.width)}px`;
-    elmnt.style.height = `${Math.round(zoomFactor * map_dim.height)}px`;
-    scrollElement(elmnt, Math.round(coordX*elmnt.clientWidth - window.clientWidth/2), Math.round(coordY*elmnt.clientHeight - window.clientY/2));
-    return zoomFactor;
+        this.element.style.transform = `matrix(${1}, 0, 0, ${1}, ${this.translateX}, ${this.translateY})`;
+
+        this.originX = clientX - this.translateX, this.originY = clientY - this.translateY;
+
+        this.applyOrigin();
+        this.apply();
+    }
+
+    boundScale(scale = this.scale) {
+        return Math.max(Math.min(1, scale), (window.innerWidth/this.element.clientWidth));
+    }
+
+    zoom(scale) {
+        this.scale = scale;
+        this.apply();
+    }
+
+    zoomTo(coordX, coordY, scale, windowX, windowY) {
+        this.originX = coordX, this.originY = coordY;
+        this.applyOrigin();
+        this.translateX =  windowX/2 - coordX; this.translateY = windowY/2 - coordY;
+        this.scale = scale;
+        this.apply();
+    }
+
 }
-
-
-
-
-
-function loadMap(elmnt, map_id) {
-    elmnt.id = map_id;
-    return new MapData(map_id, elmnt.clientWidth, elmnt.clientHeight);
-    /*Object.assign(elmnt.style, {
-            position: "absolute",
-            positionTop: "0",
-            positionLeft: "0",
-            backgroundPosition: "center",
-            backgroundSize: "cover",
-            backgroundImage: 'url("src\\Swordcoast faded.jpg")'
-        }
-    );*/
-}
-
-   
+ 
 
 window.onload = () => {
-    window.localStorage.removeItem("map");
-    const map = document.getElementsByClassName("map")[0];
-    const map_data = loadMap(map, "swordcoastmap");
-    //map.innerHTML = `${map_dim[0]} ${map_dim[1]}`
-    var scale = zoomTo(map, 0.5, 0.5, 0.2, map_data);
+
+    var map = document.getElementsByClassName("map")[0];
+    var transformMap = new TransformMap(map);
+    transformMap.zoomTo(4606, 2452, 0.7, window.innerWidth, window.innerHeight)
+
     map.onmousedown = (e) => {
         e = e || window.event;
         e.preventDefault();
-
+        
         //Ändere Mausaussehen passend zum Event
         map.style.cursor = "grabbing";
-        // get the mouse cursor position at startup:
 
         document.onmouseup = () => {
             // stop moving when mouse button is released:
@@ -69,33 +81,22 @@ window.onload = () => {
         document.onmousemove = (e) => {
             e = e || window.event;
             e.preventDefault();
-            // calculate the new cursor position:
-            // set the element's new position:
-            scrollElement(map, map.parentElement.scrollLeft - e.movementX, map.parentElement.scrollTop - e.movementY);
+            
+            transformMap.move(e.movementX, e.movementY);
         };
     };
-    window.onwheel = (e) => {
+
+    
+    map.onwheel = (e) => {
         e = e || window.event;
         e.preventDefault();
-        
+
         // Ändere Mausaussehen
         map.style.cursor = (e.deltaY > 0) ? "zoom-out": (e.deltaY == 0) ? "grab": "zoom-in";
         
-        scale += e.deltaY * -0.01;
-        var posX = (e.clientX + map.parentElement.scrollLeft)/map.clientWidth ;
-        var posY = (e.clientY + map.parentElement.scrollTop)/map.clientHeight;
-
-        if (scale*map_data.width > window.innerWidth && scale <= 1) {
-            map.style.width = `${Math.round(scale * map_data.width)}px`;
-            map.style.height = `${Math.round(scale * map_data.height)}px`;
-            scrollElement(map, posX*map.clientWidth - e.clientX, posY*map.clientHeight - e.clientY);
-        } else {
-            scale -= e.deltaY * -0.01;
-            map.parentElement.scrollTop -= e.deltaY;
-        }
-        //scale = scaleTo(map, scale, e.deltaY, e.clientX, e.clientY);
+        transformMap.changeOrigin(e.clientX, e.clientY);
+                
+        transformMap.zoom(Math.max(Math.min(1, transformMap.scale - e.deltaY * 0.01), (window.innerWidth/map.clientWidth)));
     };
-    //dragElement(map); 
-    //zoomElement(map);
-    
+   
 };
