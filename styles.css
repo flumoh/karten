@@ -26,6 +26,11 @@
     background-image: url("images/Swordcoast\ faded.jpg");
 }
 
+#redlarch {
+    width: 3900px;
+    height: 2700px;
+    background-image: url("images/Red\ Larch.jpg");
+}
 
 .fa-map-marker {
     transform-origin: inherit;
