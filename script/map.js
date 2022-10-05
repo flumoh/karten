@@ -92,7 +92,7 @@ window.onload = () => {
         e.preventDefault();
 
         // Ändere Mausaussehen
-        map.style.cursor = (e.deltaY > 0) ? "zoom-out": (e.deltaY == 0) ? "grab": "zoom-in";
+        //map.style.cursor = (e.deltaY > 0) ? "zoom-out": (e.deltaY == 0) ? "grab": "zoom-in";
         
         transformMap.changeOrigin(e.clientX, e.clientY);
                 
