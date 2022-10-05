@@ -54,11 +54,15 @@ class TransformMap {
     }
 
 }
- 
 
 window.onload = () => {
 
     var map = document.getElementsByClassName("map")[0];
+
+    addMapListener(map);
+};
+
+function addMapListener(map) {
     var transformMap = new TransformMap(map);
     transformMap.zoomTo(4606, 2452, 0.7, window.innerWidth, window.innerHeight)
 
@@ -81,7 +85,7 @@ window.onload = () => {
         document.onmousemove = (e) => {
             e = e || window.event;
             e.preventDefault();
-            
+            // Move map in direction of the mouse
             transformMap.move(e.movementX, e.movementY);
         };
     };
@@ -99,4 +103,4 @@ window.onload = () => {
         transformMap.zoom(Math.max(Math.min(1, transformMap.scale - e.deltaY * 0.01), (window.innerWidth/map.clientWidth)));
     };
    
-};
+}
