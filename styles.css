@@ -16,8 +16,7 @@
     background-repeat: no-repeat;
     cursor: grab;
     z-index: -1;
-    transition: transform ease 0.3s;
-    transition: scroll ease 0.3s;
+    transition: transform 0.1s;
 }
 
 #swordcoastmap {
