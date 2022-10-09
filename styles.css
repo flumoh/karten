@@ -14,9 +14,9 @@
     background-position: 0% 0%;
     background-size: 100%;
     background-repeat: no-repeat;
-    cursor: grab;
+    cursor: crosshair;
     z-index: -1;
-    transition: transform 0.1s;
+    /*transition: transform 0.1s;*/
 }
 
 #swordcoastmap {
@@ -29,6 +29,12 @@
     width: 3900px;
     height: 2700px;
     background-image: url("images/Red\ Larch.jpg");
+}
+
+polygon {
+    fill:lime;
+    stroke:purple;
+    stroke-width:1;
 }
 
 .fa-map-marker {

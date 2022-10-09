@@ -23,15 +23,16 @@
     <body>
         <div id="map-frame">
             <!--<img src="images/Swordcoast faded.jpg" class="map" width="10200px">-->
-            <div class="map" id="swordcoastmap">
-                <a href=#sidemenu class="map-marker" id="waterdeep"><i class="fa fa-map-marker"></i></a>
-            </div>
+            <svg class="map" id="redlarch" onwheel="zoomMap()" onmousedown="moveMap()">
+                <polygon data-bs-toggle="collapse" data-bs-target="#inn" ondblclick="info('inn')" class="inn gebaeude" points="1880,893 1878,966 1888,968 1885,987 1906,987 1901,1021 1883,1022 1881,1041 1874,1045 1871,1105 1665,1090 1630,1049 1607,1066 1623,1089 1581,1123 1522,1056 1569,1021 1567,994 1526,971 1586,870"/>
+                <polygon data-bs-toggle="collapse" data-bs-target="#shrine" ondblclick="info('shrine')" class="shrine gebaeude" points="1783,1137 1863,1132 1868,1189 1788,1191"/>
+            </svg>
         </div>
 
 
         <header class="left">
             <div class="d-inline-flex mb-2 w-100">
-                <button type="button" class="btn btn-light me-2" data-bs-toggle="collapse" data-bs-target="#sidemenu">
+                <button type="button" class="btn btn-light me-2" id="sidemenu-button">
                     <i class="fa fa-bars"></i>
                 </button>
                 <div class="input-group flex-fill">
@@ -42,9 +43,12 @@
                 </div>
             </div>
             
-            <aside id="sidemenu" class="collapse collapse-horizontal shadow">
-                <div class="card">
-                    <div class="card-body">Basic card </div>
+            <aside id="sidemenu">
+                <div id="inn" class="card collapse collapse-horizontal shadow" data-bs-parent="#sidemenu">
+                    <div class="card-body" id="card-info">Basic card </div>
+                </div>
+                <div id="shrine" class="card collapse collapse-horizontal shadow" data-bs-parent="#sidemenu">
+                    <div class="card-body" id="card-info-shrine">Basic card </div>
                 </div>
             </aside>  
         </header>
