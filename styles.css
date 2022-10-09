@@ -14,10 +14,9 @@
     background-position: 0% 0%;
     background-size: 100%;
     background-repeat: no-repeat;
-    cursor: grab;
+    cursor: crosshair;
     z-index: -1;
-    transition: transform ease 0.3s;
-    transition: scroll ease 0.3s;
+    /*transition: transform 0.1s;*/
 }
 
 #swordcoastmap {
@@ -26,6 +25,17 @@
     background-image: url("images/Swordcoast\ faded.jpg");
 }
 
+#redlarch {
+    width: 3900px;
+    height: 2700px;
+    background-image: url("images/Red\ Larch.jpg");
+}
+
+polygon {
+    fill:lime;
+    stroke:purple;
+    stroke-width:1;
+}
 
 .fa-map-marker {
     transform-origin: inherit;
