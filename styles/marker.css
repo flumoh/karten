@@ -1,0 +1,25 @@
+.fa-map-marker {
+    transform-origin: inherit;
+    font-size: inherit;
+    color: darkred;
+    -webkit-text-stroke: 4px beige;
+}
+
+.fa-map-marker:hover {
+    transform: scale(1.2);
+}
+
+.map-marker {
+    font-size: 72px;
+    position: absolute;
+    top: -90px;
+    left: -20px;
+    transform-origin: 50% 100%;
+    transition: transform ease 0.3s;
+
+}
+
+#waterdeep {
+    left: 4586px;
+    top: 2362px;
+}
