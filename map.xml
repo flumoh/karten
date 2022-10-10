@@ -1,5 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map id="swordcoast">
-<name>Sword Coast Karte</name>
-<polygon id="area0001"/>
-</map>
+<kartensammlung>
+    <karte id="swordcoast" width="10200px" height="6600px" background-image='url("images/Swordcoast\ faded.jpg")'>
+        <name>Sword Coast Karte</name>
+        <beschreibung></beschreibung>
+        <bild></bild>
+        <markierung id="area0001" art="wald">
+            <name>High Forest</name>
+            <marke>XXXpx, XXXpx</marke>
+            <polygon/>
+            <beschreibung></beschreibung>
+            <kategorie></kategorie>
+            <tag></tag>
+        </markierung>
+        <markierung id="area0002" art="stadt">
+            <name>Red Larch</name>
+            <marke>XXXpx, XXXpx</marke>
+            <circle/>
+            <bild></bild>
+            <beschreibung></beschreibung>
+            <zur_Karte>redlarch</zur_Karte>
+            <kategorie>Lord's Alliance</kategorie>
+            <tag>PotA</tag>
+        </markierung>
+    </karte>
+    <karte id="redlarch" parent="swordcoast">
+        <name>Red Larch</name>
+    </karte>
+</kartensammlung>

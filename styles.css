@@ -1,69 +1,3 @@
-#map-frame {
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    -ms-overflow-style: none; /* Edge, Internet Explorer */
-    scrollbar-width: none; /* Firefox */
-    overflow: hidden;
-}
-
-.map {
-    position: absolute;
-    background-position: 0% 0%;
-    background-size: 100%;
-    background-repeat: no-repeat;
-    cursor: crosshair;
-    z-index: -1;
-    /*transition: transform 0.1s;*/
-}
-
-#swordcoastmap {
-    width: 10200px;
-    height: 6600px;
-    background-image: url("images/Swordcoast\ faded.jpg");
-}
-
-#redlarch {
-    width: 3900px;
-    height: 2700px;
-    background-image: url("images/Red\ Larch.jpg");
-}
-
-polygon {
-    fill:lime;
-    stroke:purple;
-    stroke-width:1;
-}
-
-.fa-map-marker {
-    transform-origin: inherit;
-    font-size: inherit;
-    color: darkred;
-    -webkit-text-stroke: 4px beige;
-}
-
-.fa-map-marker:hover {
-    transform: scale(1.2);
-}
-
-.map-marker {
-    font-size: 72px;
-    position: absolute;
-    top: -90px;
-    left: -20px;
-    transform-origin: 50% 100%;
-    transition: transform ease 0.3s;
-
-}
-
-#waterdeep {
-    left: 4586px;
-    top: 2362px;
-}
-
-
 header {
     position: fixed;
     margin-top: 10px;
@@ -90,10 +24,6 @@ main {
 body {
     background-color: black;
     overflow: hidden;
-}
-
-#map-frame::-webkit-scrollbar {
-    display: none; /* Chrome, Safari, Opera */
 }
 
 .icon { /*Icons Styling*/

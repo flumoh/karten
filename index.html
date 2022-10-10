@@ -18,15 +18,18 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <!--My Script-->
         <link rel="stylesheet" href="styles.css">
+        <link rel="stylesheet" href="styles/map.css">
+        <link rel="stylesheet" href="styles/marker.css">
         <script src="script/map.js"></script>
     </head>
     <body>
         <div id="map-frame">
             <!--<img src="images/Swordcoast faded.jpg" class="map" width="10200px">-->
-            <svg class="map" id="redlarch" onwheel="zoomMap()" onmousedown="moveMap()">
+            <div class="map" id="redlarch" onwheel="zoomMap()" onmousedown="moveMap()">
+            <svg>
                 <polygon data-bs-toggle="collapse" data-bs-target="#inn" ondblclick="info('inn')" class="inn gebaeude" points="1880,893 1878,966 1888,968 1885,987 1906,987 1901,1021 1883,1022 1881,1041 1874,1045 1871,1105 1665,1090 1630,1049 1607,1066 1623,1089 1581,1123 1522,1056 1569,1021 1567,994 1526,971 1586,870"/>
                 <polygon data-bs-toggle="collapse" data-bs-target="#shrine" ondblclick="info('shrine')" class="shrine gebaeude" points="1783,1137 1863,1132 1868,1189 1788,1191"/>
-            </svg>
+            </svg></div>
         </div>
 
 
