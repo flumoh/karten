@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:altova="http://www.altova.com/xml-schema-extensions" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="kartensammlung">
+		<xs:annotation>
+			<xs:documentation>Comment describing your root element</xs:documentation>
+		</xs:annotation>
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="karte">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="name"/>
+							<xs:element name="bild" minOccurs="0"/>
+							<xs:element name="beschreibung"/>
+							<xs:element ref="markierung" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+						<xs:attribute name="id" use="required"/>
+						<xs:attribute name="image-url" use="required"/>
+						<xs:attributeGroup ref="groesse"/>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="markierung">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="name"/>
+				<xs:element name="marke" maxOccurs="unbounded"/>
+				<xs:choice minOccurs="0" maxOccurs="unbounded">
+					<xs:element name="polygon"/>
+					<xs:element name="circle"/>
+				</xs:choice>
+				<xs:element name="bild"/>
+				<xs:element name="beschreibung"/>
+				<xs:element name="referenz" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="kategorie" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element name="tag" minOccurs="0" maxOccurs="unbounded"/>
+			</xs:sequence>
+			<xs:attribute name="id"/>
+			<xs:attribute name="art">
+				<xs:annotation>
+					<xs:appinfo>
+						<altova:exampleValues>
+							<altova:example value="landschaft"/>
+							<altova:example value="gebäude"/>
+							<altova:example value="stadt"/>
+						</altova:exampleValues>
+					</xs:appinfo>
+				</xs:annotation>
+			</xs:attribute>
+		</xs:complexType>
+	</xs:element>
+	<xs:attributeGroup name="groesse">
+		<xs:attribute name="width" type="xs:int" use="required"/>
+		<xs:attribute name="height" type="xs:int" use="required"/>
+	</xs:attributeGroup>
+</xs:schema>
